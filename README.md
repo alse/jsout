@@ -1,29 +1,29 @@
 # Jsout
 
-TODO: Write a gem description
+Easy json presenters for your models.
 
-## Installation
+gem "jsout", github: "alse/jsout"
 
-Add this line to your application's Gemfile:
 
-    gem 'jsout'
+# To set up the presenters:
 
-And then execute:
+Jsout.present(:post) do
+  template(:default) do |work|
+    { 
+      title: post.title
+    }
+  end
 
-    $ bundle
+  template(:index) do |work|
+    { 
+      title: post.title + " on index page" 
+    }
+  end
+end
 
-Or install it yourself as:
+# Using a presenter:
+  
+  posts = Post.all
 
-    $ gem install jsout
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+  posts.jsout          # <= Uses the :default template
+  posts.jsout(:index)  # <= Uses the :index template

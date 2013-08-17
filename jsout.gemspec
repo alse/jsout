@@ -7,9 +7,9 @@ Gem::Specification.new do |spec|
   spec.name          = "jsout"
   spec.version       = Jsout::VERSION
   spec.authors       = ["alse"]
-  spec.email         = ["TODO: Write your email address"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.email         = ["al.se@me.com"]
+  spec.description   = %q{Json presenters for your models}
+  spec.summary       = %q{Json presenters for your models}
   spec.homepage      = ""
   spec.license       = "MIT"
 

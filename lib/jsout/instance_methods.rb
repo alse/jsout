@@ -16,11 +16,11 @@ module Jsout::InstanceMethods
       result = parse_resource(self)
     end
 
-    if @template_options[:include_root]
-      {@resource_name => result}
-    else
-      result
+    if @template_options[:root]
+      result = {@template_options[:root] => result}
     end
+
+    result.to_json
   end
 
   private
