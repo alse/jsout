@@ -1,6 +1,8 @@
 module Jsout::InstanceMethods
-  def jsout(template_name = :default)
-    return self.as_json if Jsout.presenters.blank?
+  def jsout(template_name = :default, args = {})
+
+    # Returns json if there are no presenters
+    return self.to_json if Jsout.presenters.blank?
 
     @template_name    = template_name
     @resource_name    = get_resource_name
@@ -16,9 +18,9 @@ module Jsout::InstanceMethods
       result = parse_resource(self)
     end
 
-    if @template_options[:root]
-      result = {@template_options[:root] => result}
-    end
+    
+    result = {@template_options[:root].to_sym => result} if @template_options[:root]
+    result.merge!(args[:include])                 if args[:include].present?
 
     result.to_json
   end
@@ -26,7 +28,6 @@ module Jsout::InstanceMethods
   private
     def parse_resource(object)
       block = @template[:block] if @template.present?
-
       block.call object
     end
 
