@@ -18,7 +18,6 @@ module Jsout::InstanceMethods
       result = parse_resource(self)
     end
 
-    
     result = {@template_options[:root].to_sym => result} if @template_options[:root]
     result.merge!(args[:include])                 if args[:include].present?
 
