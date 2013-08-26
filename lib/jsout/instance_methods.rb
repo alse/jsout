@@ -22,7 +22,12 @@ module Jsout::InstanceMethods
     result = {@template_options[:root].to_sym => result} if @template_options[:root]
     result.merge!(args[:include])                 if args[:include].present?
 
-    result.to_json
+    case Jsout.output_format
+    when :hash
+      result
+    else
+      result.to_json
+    end
   end
 
   private

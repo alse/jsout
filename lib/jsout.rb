@@ -10,6 +10,9 @@ module Jsout
   mattr_accessor :presenters
   self.presenters ||= {}
 
+  mattr_accessor :output_format
+  self.output_format ||= :json
+
   def self.present(resource_name, &block)
     resource_name = resource_name.to_s.downcase.to_sym
 

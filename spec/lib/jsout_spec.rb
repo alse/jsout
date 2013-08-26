@@ -79,4 +79,18 @@ describe "jsout" do
       posts.jsout(:default, include: {another: "hash"}).should == {:posts=>[{:title=>"First post"}, {:title=>"Second post"}], :another=>"hash"}.to_json
     end
   end
+
+  context "outputs as hash" do
+    it "outputs as hash" do
+      post = Post.first
+
+      Jsout.output_format = :hash
+      Jsout.present(:post) do
+        template(:default, root: :posts) do |post|
+          { title: post.title }
+        end
+      end
+      post.jsout.class.should == Hash
+    end
+  end
 end
