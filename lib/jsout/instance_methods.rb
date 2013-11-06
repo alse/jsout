@@ -11,9 +11,7 @@ module Jsout::InstanceMethods
 
     if self.kind_of?(Array) || self.kind_of?(ActiveRecord::Relation)
       result = []
-      self.each do |object|
-        result << parse_resource(object)
-      end
+      self.each { |object| result << parse_resource(object) }
     elsif self.kind_of?(ActiveRecord::Base)
       result = parse_resource(self)
     end
